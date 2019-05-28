@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 幼幼班</title>
+</head>
+
+<body>
+    <!-- 190528 vue -->
+    <div id="app">
+        {{ score * 0.8}}
+        <div class="box">
+            {{ message }}
+        </div>
+        <div v-show="loading">訊息載入錯誤1</div>
+        <div v-if="loading">訊息載入錯誤2</div>
+        <!-- v-model -->
+        <input type="text" v-model="score">
+        <div v-if="score >= 60">及格</div>
+        <div v-if="score < 60">不及格</div>
+    </div>
+
+    <!-- vue cdn unpkg-->
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="js/all.js"></script>
+</body>
+
+</html>
