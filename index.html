@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>vue 幼幼班</title>
+</head>
+
+<body>
+    <!-- 190528 vue -->
+    <div id="app">
+        {{ score * 0.8}}
+        <div class="box">
+            {{ message }}
+        </div>
+        <div v-show="loading">訊息載入錯誤1</div>
+        <div v-if="loading">訊息載入錯誤2</div>
+        <!-- v-model -->
+        <input type="text" v-model="score">
+        <div v-if="score >= 60">及格</div>
+        <div v-if="score < 60">不及格</div>
+        <!-- 0530 v-model -->
+        {{ score *20 }}
+        <!-- v-for -->
+        <ul>
+            <li v-for="(item, index) in colors" :key="index">
+                {{ item }}
+                {{ index }}
+            </li>
+        </ul>
+        <!-- v-on，@為縮寫 -->
+        <ul>
+            <li v-for="(item, index) in home" :key="index" @click="myFather(item.father)">
+                {{ item.father }}
+            </li>
+        </ul>
+    </div>
+
+    <!-- 小作品todolist -->
+    <div class="appTodolist">
+        <input type="text" placeholder="請入代辦事項" @keyup.enter="addTodo(newTodo)" v-model="newTodo">
+        <!-- 這邊的v-model就是連接給data的newTodo，然後當在按下enter帶入剛剛綁定後的newTodo -->
+        <h2>事項列表</h2>
+        <ul>
+            <li v-for="(todo, index) in todos" :key="index" :class="{ active: todo.completed }">
+                <input type="checkbox" v-model="todo.completed">
+                {{ todo.content }}
+                -<a href="#" @click.prevent="removeTodo(todo)">刪除</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 生命週期 -->
+    <div class="test"></div>
+    <!-- vue cdn unpkg-->
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="js/all.js"></script>
+</body>
+
+</html>
