@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <title>vue 幼幼班</title>
+    <<<<<<< HEAD <link rel="stylesheet" href="css/style.css">
+        <title>vue 幼幼班</title>
+        =======
+        <<<<<<< HEAD=======<link rel="stylesheet" href="css/style.css">
+            >>>>>>> 生命週期
+            <title>vue 幼幼班</title>
+            >>>>>>> 92b66dff65e3222d9746626108b213aa48aa635b
 </head>
 
 <body>
@@ -55,6 +60,63 @@
 
     <!-- 生命週期 -->
     <div class="test"></div>
+
+    <!-- 0531 匯率計算機 -->
+    <div class="calu">
+        輸入台幣: <input type="text" v-model="NT">
+        <!-- 第一個方法: 邏輯寫在html裡面 -->
+        <!-- <ul>
+            <li>日幣:{{ NT*0.2936 }}</li>
+            <li>美金:{{ NT*31.855 }}</li>
+        </ul> -->
+        <!-- 第二個方法: 若運算複雜或者有串ajax，就不適合寫在html可讀性會變差 -->
+        <ul>
+            <li>日幣:{{ japen }}</li>
+            <li>美金:{{ usa }}</li>
+        </ul>
+    </div>
+
+    <!-- BMI -->
+    <div class="bmi">
+        路人A體質肪:
+        <input type="text" v-model="a">
+        路人B體質肪:
+        <input type="text" v-model="b">
+        <ul>
+            <li>
+                誰的體質肪比較重?: {{ whoheavy }}
+            </li>
+            <li>
+                a跟一班人體質訪差多少?{{ judegeA }}
+            </li>
+        </ul>
+    </div>
+
+    <!-- v-bind -->
+    <div class="imgBind">
+        <img :src="imgUrl" alt="">
+    </div>
+
+    <!-- github repo -->
+    <div class="github">
+        <h1>Latest Vue.js commits</h1>
+        <template v-for="(branch, index) in branches">
+            <input type="radio" v-model="currentBranch" :value="branch"> {{branch}}
+        </template>
+
+        <p>vue.js/vue@{{currentBranch}}</p>
+        <ul>
+            <li v-for="(record, index) in commits">
+                <a :href="record.html_url" target="_blank">
+                    更新紀錄
+                </a>
+                - by <span><a :href="record.author.html_url" target="_blank">
+                        {{record.commit.author.name}}</a></span>
+                at <span> {{record.commit.author.date}} </span>
+            </li>
+        </ul>
+    </div>
+
     <!-- vue cdn unpkg-->
     <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
     <script src="js/all.js"></script>
