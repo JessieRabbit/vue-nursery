@@ -93,3 +93,86 @@ var myVue = new Vue({
 
     }
 });
+
+// 0531 匯率計算機
+var calu = new Vue({
+    el: '.calu',
+    data: {
+        NT: 0
+    },
+    computed: {
+        japen() {
+            // 注意!! computed特性
+            /*let total = this.NT * 0.2936;
+            const d = new Date();
+            return d.getSeconds();*/
+            return this.NT * 0.2936;
+        },
+        usa() {
+            return this.NT * 31.855;
+        }
+    },
+});
+
+// BMI
+var bmi = new Vue({
+    el: '.bmi',
+    data: {
+        a: 0,
+        b: 0,
+        BMI: 20
+    },
+    computed: {
+        whoheavy() {
+            if (this.a > this.b) {
+                return 'a重';
+            } else if (this.a < this.b) {
+                return 'b重';
+            } else {
+                return '一樣重';
+            }
+        },
+        judegeA() {
+            if (this.a > 0) {
+                return this.a - this.BMI;
+            }
+        }
+    }
+});
+
+// v-bind
+var imgBind = new Vue({
+    el: '.imgBind',
+    data: {
+        imgUrl: 'https://stickershop.line-scdn.net/stickershop/v1/product/8440/LINEStorePC/main.png;compress=true',
+    }
+});
+
+// github repo
+var apiURL = 'https://api.github.com/repos/vuejs/vue/commits?per_page=5&sha=';
+var github = new Vue({
+    el: '.github',
+    data: {
+        branches: ['master', 'dev'],
+        currentBranch: 'master',
+        commits: null
+    },
+    created() {
+        this.fatchData();
+    },
+    watch: {
+        currentBranch: 'fatchData'
+    },
+    methods: {
+        fatchData() {
+            var xhr = new XMLHttpRequest();
+            var self = this;
+            xhr.open('GET', apiURL + self.currentBranch, true);
+            xhr.send();
+            xhr.onload = function () {
+                self.commits = JSON.parse(xhr.responseText);
+                console.log(self.commits[0].html_url);
+            }
+        }
+    }
+});
