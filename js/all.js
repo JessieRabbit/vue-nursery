@@ -159,6 +159,7 @@ var github = new Vue({
     },
     created() {
         this.fatchData();
+        console.log('create');
     },
     watch: {
         currentBranch: 'fatchData'
@@ -176,3 +177,34 @@ var github = new Vue({
         }
     }
 });
+
+//  作業3 找出自己github repo
+let apiGitHub = '';
+const myGitRepo = new Vue({
+    el: '.myGitRepo',
+    data: {
+        owner: 'JessieRabbit',
+        repoList: []
+    },
+    created() {
+        this.addRepoList(this.owner)
+    },
+    methods: {
+        addRepoList(owner) {
+            const self = this;
+            if (owner !== '') {
+                apiGitHub = `https://api.github.com/users/${owner}/repos`;
+                // console.log('apiGitHub', apiGitHub);
+                // console.log('按下');
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', apiGitHub, true);
+                xhr.send();
+                xhr.onload = function () {
+                    const parseResult = JSON.parse(xhr.responseText);
+                    // console.log(parseResult[0].name);
+                    self.repoList = parseResult;
+                }
+            }
+        }
+    }
+})
